@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>All Organizations</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: Arial;
+      padding: 20px;
+    }
+    a {
+      color: red;
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>All Locations</h1>
+
+<a href="nyc.html">NYC Organization</a>
+<a href="la.html">LA Organization</a>
+
+<br>
+<button onclick="window.location.href='index.html'">Back</button>
+
+</body>
+</html>
