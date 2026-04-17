@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NYC Organization</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: Arial;
+      padding: 20px;
+    }
+    button {
+      padding: 10px;
+      background: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>NYC Organization</h1>
+<h3>New York, USA</h3>
+
+<p>
+We provide food, water, and support to families in need.
+</p>
+
+<p><strong>Goal:</strong> $10,000</p>
+<p><strong>Raised:</strong> $2,500</p>
+
+<button onclick="window.location.href='index.html'">
+  Back
+</button>
+
+<br><br>
+
+<!-- PayPal Donate Button -->
+<form action="https://www.paypal.com/donate" method="post" target="_blank">
+  <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL">
+  <input type="hidden" name="item_name" value="Donate to NYC Organization">
+  <input type="hidden" name="currency_code" value="USD">
+  <button type="submit">Donate Now</button>
+</form>
+
+</body>
+</html>
