@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Fundraising Globe</title>
+  <script src="https://unpkg.com/globe.gl"></script>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: Arial;
+      text-align: center;
+    }
+    #globeViz {
+      width: 100%;
+      height: 80vh;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 20px;
+      background: red;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>My Fundraising Network</h1>
+
+<div id="globeViz"></div>
+
+<button onclick="window.location.href='all.html'">
+  View All
+</button>
+
+<script>
+const locations = [
+  {
+    lat: 40.7128,
+    lng: -74.0060,
+    name: "NYC Organization",
+    page: "nyc.html"
+  }
+];
+
+const globe = Globe()
+  (document.getElementById('globeViz'))
+  .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
+  .pointsData(locations)
+  .pointLat(d => d.lat)
+  .pointLng(d => d.lng)
+  .pointColor(() => 'red')
+  .pointAltitude(0.02)
+  .onPointClick(d => {
+    window.location.href = d.page;
+  });
+</script>
+
+</body>
+</html>
