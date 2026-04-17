@@ -1,130 +1,21 @@
-<!DOCTYPE html>
 <html>
 <head>
-  <title>Global Fundraising Network</title>
-
-  <!-- Globe library -->
-  <script src="https://unpkg.com/globe.gl"></script>
-
-  <style>
-    body {
-      margin: 0;
-      background: black;
-      color: white;
-      font-family: Arial;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 45px;
-      margin-top: 20px;
-    }
-
-    #globeViz {
-      width: 100%;
-      height: 70vh;
-    }
-
-    button {
-      padding: 12px 20px;
-      margin: 20px;
-      background: red;
-      border: none;
-      color: white;
-      cursor: pointer;
-      border-radius: 8px;
-    }
-
-    /* POPUP */
-    #infoPanel {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 70%;
-      max-width: 800px;
-      background: #111;
-      padding: 20px;
-      border-radius: 15px;
-      display: none;
-    }
-
-    .img-box {
-      background: #222;
-      height: 100px;
-      margin: 5px;
-    }
-  </style>
+    <title>Fundraiser</title>
 </head>
-
 <body>
-
-<h1>GLOBAL FUNDRAISING NETWORK</h1>
-
-<div id="globeViz"></div>
-
-<button onclick="window.location.href='all.html'">
-  View All Organizations
-</button>
-
-<!-- POPUP -->
-<div id="infoPanel">
-  <h2 id="orgName"></h2>
-  <p id="orgLocation"></p>
-
-  <div class="img-box"></div>
-  <div class="img-box"></div>
-
-  <p id="orgDesc"></p>
-  <p>Goal: <span id="orgGoal"></span></p>
-  <p>Raised: <span id="orgRaised"></span></p>
-
-  <button id="goPageBtn">Go to Page</button>
-  <button onclick="closePanel()">Close</button>
-</div>
-
-<script>
-const locations = [
-  {
-    lat: 40.7128,
-    lng: -74.0060,
-    name: "NYC Organization",
-    location: "New York, USA",
-    desc: "Helping families in need.",
-    goal: "$10,000",
-    raised: "$2,500",
-    page: "nyc.html"
-  }
-];
-
-const globe = Globe()
-(document.getElementById('globeViz'))
-.globeImageUrl('https://unpkg.com/three-globe/example/img/earth-dark.jpg')
-.pointsData(locations)
-.pointLat(d => d.lat)
-.pointLng(d => d.lng)
-.pointColor(() => 'red')
-.pointAltitude(0.05)
-.onPointClick(d => showPanel(d));
-
-function showPanel(d) {
-  document.getElementById("infoPanel").style.display = "block";
-
-  document.getElementById("orgName").innerText = d.name;
-  document.getElementById("orgLocation").innerText = d.location;
-  document.getElementById("orgDesc").innerText = d.desc;
-  document.getElementById("orgGoal").innerText = d.goal;
-  document.getElementById("orgRaised").innerText = d.raised;
-
-  document.getElementById("goPageBtn").onclick = () => {
-    window.location.href = d.page;
-  };
-}
-
-function closePanel() {
-  document.getElementById("infoPanel").style.display = "none";
-}
-</script>
-
+    <h1>Welcome to Our Fundraiser!</h1>
+    <div>
+        <h2>Featured Organizations</h2>
+        <ul>
+            <li>Organization A - Description</li>
+            <li>Organization B - Description</li>
+            <li>New Organization C - New Description</li>
+            <li>New Organization D - New Description</li>
+        </ul>
+    </div>
+    <div>
+        <h2>Globe Section</h2>
+        <!-- Globe visualization goes here -->
+    </div>
 </body>
 </html>
