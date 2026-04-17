@@ -1,21 +1,65 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Fundraiser</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Globe</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #globe {
+            height: 70vh;
+            width: 100%;
+        }
+        .popup {
+            display: none;
+            position: absolute;
+            background: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            z-index: 10;
+        }
+        .close {
+            cursor: pointer;
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Our Fundraiser!</h1>
-    <div>
-        <h2>Featured Organizations</h2>
-        <ul>
-            <li>Organization A - Description</li>
-            <li>Organization B - Description</li>
-            <li>New Organization C - New Description</li>
-            <li>New Organization D - New Description</li>
-        </ul>
-    </div>
-    <div>
-        <h2>Globe Section</h2>
-        <!-- Globe visualization goes here -->
-    </div>
+    <div id="globe"></div>
+    <div id="popup" class="popup"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/globe.gl/dist/globe.gl.js"></script>
+    <script>
+        const locations = [
+            { lat: 40.7128, lng: -74.0060, name: 'NYC Organization', goal: 100000, raised: 50000, img: 'nyc-image.jpg', link: 'https://example.com/nyc' },
+            { lat: 34.0522, lng: -118.2437, name: 'LA Organization', goal: 150000, raised: 80000, img: 'la-image.jpg', link: 'https://example.com/la' },
+        ];
+
+        const globe = new Globe()
+            .globeImageUrl('//unpkg.com/earth-3d/assets/earth.jpg')
+            .bumpImageUrl('//unpkg.com/earth-3d/assets/earth-bump.jpg')
+            .backgroundColor('black')
+            .onClick(location => {
+                const info = locations.find(loc => loc.lat === location.lat && loc.lng === location.lng);
+                if (info) {
+                    document.getElementById('popup').innerHTML = `
+                        <strong>${info.name}</strong>\n                        <br><img src='${info.img}' alt='${info.name}' style='width:100px;'>\n                        <br>Goal: $${info.goal} | Raised: $${info.raised}\n                        <br><a href='${info.link}'>View Organization</a> | <span class='close' onclick='closePopup()'>Close</span>\n                    `;
+                    document.getElementById('popup').style.display = 'block';
+                }
+            })
+            .onMouseOut(() => document.getElementById('popup').style.display = 'none')
+            .latitude(37.5)
+            .longitude(-98)
+            .renderer(new THREE.WebGLRenderer({ alpha: true }));
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        Globe()
+            .points(locations.map(loc => ({ lat: loc.lat, lng: loc.lng, size: 5, color: 'red' })))
+            .draggable(true);
+    </script>
 </body>
 </html>
